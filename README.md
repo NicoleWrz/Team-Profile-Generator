@@ -14,7 +14,7 @@
   npm init, npm install inquirer, npm install jest
 
 ## Screenshot
-  ![]()
+  ![](https://github.com/NicoleWrz/Team-Profile-Generator/blob/253340f8b5c14bc77a690e29888f84057eacbafb/Develop/images/screenshot.png)
   
 ## Video
 
