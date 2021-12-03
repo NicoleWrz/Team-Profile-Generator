@@ -77,9 +77,6 @@ function appMenu() {
       teamMembers.push(manager);
 
       idArray.push(manager.getId());
-      console.log(idArray);
-      console.log(teamMembers);
-
       createTeam();
     });
   }
@@ -168,9 +165,6 @@ function appMenu() {
       teamMembers.push(engineer);
 
       idArray.push(engineer.getId());
-      console.log(idArray);
-      console.log(teamMembers);
-
       createTeam();
     });
   }
@@ -180,7 +174,7 @@ function appMenu() {
       {
         type: "input",
         name: "internName",
-        message: "What is the team engineer's name?",
+        message: "What is the team intern's name?",
         validate: answer => {
           if (answer !== "") {
             return true;
@@ -191,7 +185,7 @@ function appMenu() {
       {
         type: "input",
         name: "internId",
-        message: "What is the team engineer's id?",
+        message: "What is the team intern's id?",
         validate: answer => {
           const pass = answer.match(
             /^[1-9]\d*$/
@@ -205,7 +199,7 @@ function appMenu() {
       {
         type: "input",
         name: "internEmail",
-        message: "What is the team engineer's email?",
+        message: "What is the team intern's email?",
         validate: answer => {
           const pass = answer.match(
             /\S+@\S+\.\S+/
@@ -229,14 +223,11 @@ function appMenu() {
       }
 
     ]).then(answers => {
-
       const intern = new Intern(answers.internName, answers.internId, answers.internEmail, answers.internSchool);
 
       teamMembers.push(intern);
 
       idArray.push(intern.getId());
-      console.log(idArray);
-      console.log(teamMembers);
       createTeam();
     });
   }
