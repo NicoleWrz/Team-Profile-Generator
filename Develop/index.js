@@ -72,17 +72,10 @@ function appMenu() {
         }
       }
     ]).then(answers => {
-      console.log(answers);
-      // TODO: YOUR CODE HERE
-      // create a manager object from class Manager
       const manager = new Manager(answers.managerName, answers.managerId, answers.managerEmail, answers.managerOfficeNumber);
 
-      // TODO: YOUR CODE HERE
-      // add the manager object to teamMembers
       teamMembers.push(manager);
 
-      // TODO: YOUR CODE HERE
-      // add manager id to idArray
       idArray.push(manager.getId());
       console.log(idArray);
       console.log(teamMembers);
@@ -171,16 +164,9 @@ function appMenu() {
         }
       }
     ]).then(answers => {
-      // TODO: YOUR CODE HERE
-      // create an engineer object from class Engineer
       const engineer = new Engineer(answers.engineerName, answers.engineerId, answers.engineerEmail, answers.engineerGithub);
-
-      // TODO: YOUR CODE HERE
-      // add the engineer object to teamMembers
       teamMembers.push(engineer);
 
-      // TODO: YOUR CODE HERE
-      // add engineer id to idArray
       idArray.push(engineer.getId());
       console.log(idArray);
       console.log(teamMembers);
@@ -191,8 +177,6 @@ function appMenu() {
 
   function addIntern() {
     inquirer.prompt([
-      // TODO: YOUR CODE HERE
-      // prompt questions to user
       {
         type: "input",
         name: "internName",
@@ -220,7 +204,7 @@ function appMenu() {
       },
       {
         type: "input",
-        name: "engineerEmail",
+        name: "internEmail",
         message: "What is the team engineer's email?",
         validate: answer => {
           const pass = answer.match(
@@ -234,8 +218,8 @@ function appMenu() {
       },
       {
         type: "input",
-        name: "engineerGithub",
-        message: "What is the team engineers's git hub username?",
+        name: "internSchool",
+        message: "What is the team intern's school?",
         validate: answer => {
           if (answer !== "") {
             return true;
@@ -245,28 +229,25 @@ function appMenu() {
       }
 
     ]).then(answers => {
-      // TODO: YOUR CODE HERE
-      // create an intern object from class Engineer
 
-      // TODO: YOUR CODE HERE
-      // add the intern object to teamMembers
+      const intern = new Intern(answers.internName, answers.internId, answers.internEmail, answers.internSchool);
 
-      // TODO: YOUR CODE HERE
-      // add intern id to idArray
+      teamMembers.push(intern);
+
+      idArray.push(intern.getId());
+      console.log(idArray);
+      console.log(teamMembers);
       createTeam();
     });
   }
 
   function buildTeam() {
-    // Create the output directory if the output path doesn't exist
     if (!fs.existsSync(OUTPUT_DIR)) {
       fs.mkdirSync(OUTPUT_DIR)
     }
     fs.writeFileSync(outputPath, render(teamMembers), "utf-8");
   }
-
   createManager();
-
 }
 
 appMenu();
