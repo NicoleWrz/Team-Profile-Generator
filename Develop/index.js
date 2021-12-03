@@ -8,7 +8,6 @@ const fs = require("fs");
 const OUTPUT_DIR = path.resolve(__dirname, "output")
 const outputPath = path.join(OUTPUT_DIR, "team.html");
 
-//
 const render = require("./src/page-template.js");
 
 const teamMembers = [];
@@ -73,14 +72,20 @@ function appMenu() {
         }
       }
     ]).then(answers => {
+      console.log(answers);
       // TODO: YOUR CODE HERE
-      // create a manager object from class Engineer
+      // create a manager object from class Manager
+      const manager = new Manager(answers.managerName, answers.managerId, answers.managerEmail, answers.managerOfficeNumber);
 
       // TODO: YOUR CODE HERE
       // add the manager object to teamMembers
+      teamMembers.push(manager);
 
       // TODO: YOUR CODE HERE
       // add manager id to idArray
+      idArray.push(manager.getId());
+      console.log(idArray);
+      console.log(teamMembers);
 
       createTeam();
     });
@@ -115,18 +120,70 @@ function appMenu() {
 
   function addEngineer() {
     inquirer.prompt([
-      // TODO: YOUR CODE HERE
-      // prompt questions to user
-
+      {
+        type: "input",
+        name: "engineerName",
+        message: "What is the team engineer's name?",
+        validate: answer => {
+          if (answer !== "") {
+            return true;
+          }
+          return "Please enter at least one character.";
+        }
+      },
+      {
+        type: "input",
+        name: "engineerId",
+        message: "What is the team engineer's id?",
+        validate: answer => {
+          const pass = answer.match(
+            /^[1-9]\d*$/
+          );
+          if (pass) {
+            return true;
+          }
+          return "Please enter a positive number greater than zero.";
+        }
+      },
+      {
+        type: "input",
+        name: "engineerEmail",
+        message: "What is the team engineer's email?",
+        validate: answer => {
+          const pass = answer.match(
+            /\S+@\S+\.\S+/
+          );
+          if (pass) {
+            return true;
+          }
+          return "Please enter a valid email address.";
+        }
+      },
+      {
+        type: "input",
+        name: "engineerGithub",
+        message: "What is the team engineers's git hub username?",
+        validate: answer => {
+          if (answer !== "") {
+            return true;
+          }
+          return "Please enter at least one character.";
+        }
+      }
     ]).then(answers => {
       // TODO: YOUR CODE HERE
       // create an engineer object from class Engineer
+      const engineer = new Engineer(answers.engineerName, answers.engineerId, answers.engineerEmail, answers.engineerGithub);
 
       // TODO: YOUR CODE HERE
       // add the engineer object to teamMembers
+      teamMembers.push(engineer);
 
       // TODO: YOUR CODE HERE
       // add engineer id to idArray
+      idArray.push(engineer.getId());
+      console.log(idArray);
+      console.log(teamMembers);
 
       createTeam();
     });
@@ -136,6 +193,57 @@ function appMenu() {
     inquirer.prompt([
       // TODO: YOUR CODE HERE
       // prompt questions to user
+      {
+        type: "input",
+        name: "internName",
+        message: "What is the team engineer's name?",
+        validate: answer => {
+          if (answer !== "") {
+            return true;
+          }
+          return "Please enter at least one character.";
+        }
+      },
+      {
+        type: "input",
+        name: "internId",
+        message: "What is the team engineer's id?",
+        validate: answer => {
+          const pass = answer.match(
+            /^[1-9]\d*$/
+          );
+          if (pass) {
+            return true;
+          }
+          return "Please enter a positive number greater than zero.";
+        }
+      },
+      {
+        type: "input",
+        name: "engineerEmail",
+        message: "What is the team engineer's email?",
+        validate: answer => {
+          const pass = answer.match(
+            /\S+@\S+\.\S+/
+          );
+          if (pass) {
+            return true;
+          }
+          return "Please enter a valid email address.";
+        }
+      },
+      {
+        type: "input",
+        name: "engineerGithub",
+        message: "What is the team engineers's git hub username?",
+        validate: answer => {
+          if (answer !== "") {
+            return true;
+          }
+          return "Please enter at least one character.";
+        }
+      }
+
     ]).then(answers => {
       // TODO: YOUR CODE HERE
       // create an intern object from class Engineer
